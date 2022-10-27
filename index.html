@@ -74,24 +74,38 @@
       function withdraw() {
         let amount = document.querySelector("#userInputAmount").value;
 
-        if (amount > moneyBox) {
-          document.querySelector("#message").innerHTML =
-            "this machine don't have enough money, Please try again with small amount";
-          let liItem = (document.querySelector("ul").style.display = "none");
+        document.querySelector("#message").innerHTML =
+          "Successfully Withdraw 👍";
+
+        let liItem = (document.querySelector("ul").style.display = "block");
+
+        let moneyBoxCondition = moneyBox - Number(amount);
+
+        // money box
+        if (moneyBox > amount) {
+          let item1 = (document.querySelector("#item1").innerHTML =
+            "Remain Money Box Amount is: " + (moneyBox - Number(amount)));
+        } else {
+          let item1 = (document.querySelector("#item1").innerHTML =
+            "Money Box Limit is over");
         }
 
-        if (amount < moneyBox) {
-          document.querySelector("#message").innerHTML =
-            "Successfully Withdraw 👍";
-
-          let liItem = (document.querySelector("ul").style.display = "block");
-
-          let item1 = (document.querySelector("#item1").innerHTML =
-            "Remain Mony Box: " + (moneyBox - Number(amount)));
+        // card daily limit
+        if (cardDailyLimit > amount) {
           let item2 = (document.querySelector("#item2").innerHTML =
-            "Remain Card Daily Limit: " + (cardDailyLimit - Number(amount)));
+            "Remain Card Daily Limit is: " + (cardDailyLimit - Number(amount)));
+        } else {
+          let item2 = (document.querySelector("#item2").innerHTML =
+            "Card Daily Limit is over");
+        }
+
+        // account balance
+        if (accountBalance > amount) {
           let item3 = (document.querySelector("#item3").innerHTML =
-            "Remain Account Balance: " + (accountBalance - Number(amount)));
+            "Remain Account Balance is: " + (accountBalance - Number(amount)));
+        } else {
+          let item3 = (document.querySelector("#item3").innerHTML =
+            "Account Balance limit is over ");
         }
       }
     </script>
